@@ -3,7 +3,7 @@
 int main() {
     // Variáveis para a primeira carta
     char estado1;
-    char codigo1[4]; // 3 caracteres + '\0'
+    char codigo1[4]; 
     char cidade1[50];
     int populacao1;
     float area1;
@@ -12,7 +12,7 @@ int main() {
 
     // Variáveis para a segunda carta
     char estado2;
-    char codigo2[4]; // 3 caracteres + '\0'
+    char codigo2[4]; 
     char cidade2[50];
     int populacao2;
     float area2;
@@ -26,7 +26,7 @@ int main() {
     printf("Código da Carta (ex: A01): ");
     scanf("%s", codigo1);
     printf("Nome da Cidade: ");
-    scanf(" %[^\n]", cidade1); // Lê até a nova linha
+    scanf(" %[^\n]", cidade1); 
     printf("População: ");
     scanf("%d", &populacao1);
     printf("Área (em km²): ");
@@ -43,7 +43,7 @@ int main() {
     printf("Código da Carta (ex: B02): ");
     scanf("%s", codigo2);
     printf("Nome da Cidade: ");
-    scanf(" %[^\n]", cidade2); // Lê até a nova linha
+    scanf(" %[^\n]", cidade2); 
     printf("População: ");
     scanf("%d", &populacao2);
     printf("Área (em km²): ");
