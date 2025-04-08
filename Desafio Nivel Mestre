@@ -1,0 +1,116 @@
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    // Informações da Carta 1 (Brasil)
+    char nome1[] = "Brasil";
+    int populacao1 = 213000000;
+    int area1 = 8515767;
+    int densidade1 = 25;
+    int pib1 = 1445;
+
+    // Informações da Carta 2 (Alemanha)
+    char nome2[] = "Alemanha";
+    int populacao2 = 83000000;
+    int area2 = 357022;
+    int densidade2 = 232;
+    int pib2 = 3846;
+
+    // Escolha dos atributos
+    int atributo1 = 0, atributo2 = 0;
+    int valor1_c1, valor2_c1, valor1_c2, valor2_c2;
+    char nomeAttr1[30], nomeAttr2[30];
+
+    // Função menu 1
+    do {
+        printf("Escolha o primeiro atributo para comparar:\n");
+        printf("1. População\n");
+        printf("2. Área\n");
+        printf("3. Densidade Demográfica\n");
+        printf("4. PIB\n");
+        printf("Escolha: ");
+        scanf("%d", &atributo1);
+        if (atributo1 < 1 || atributo1 > 4) {
+            printf("Opção inválida. Tente novamente.\n");
+        }
+    } while (atributo1 < 1 || atributo1 > 4);
+
+    // Menu 2 (dinâmico)
+    do {
+        printf("\nEscolha o segundo atributo (diferente do primeiro):\n");
+        if (atributo1 != 1) printf("1. População\n");
+        if (atributo1 != 2) printf("2. Área\n");
+        if (atributo1 != 3) printf("3. Densidade Demográfica\n");
+        if (atributo1 != 4) printf("4. PIB\n");
+        printf("Escolha: ");
+        scanf("%d", &atributo2);
+        if (atributo2 < 1 || atributo2 > 4 || atributo2 == atributo1) {
+            printf("Opção inválida ou repetida. Tente novamente.\n");
+        }
+    } while (atributo2 < 1 || atributo2 > 4 || atributo2 == atributo1);
+
+    // Atribuição dos valores
+    switch (atributo1) {
+        case 1: valor1_c1 = populacao1; valor1_c2 = populacao2; strcpy(nomeAttr1, "População"); break;
+        case 2: valor1_c1 = area1; valor1_c2 = area2; strcpy(nomeAttr1, "Área"); break;
+        case 3: valor1_c1 = densidade1; valor1_c2 = densidade2; strcpy(nomeAttr1, "Densidade Demográfica"); break;
+        case 4: valor1_c1 = pib1; valor1_c2 = pib2; strcpy(nomeAttr1, "PIB"); break;
+        default: printf("Erro ao selecionar atributo 1.\n"); return 1;
+    }
+
+    switch (atributo2) {
+        case 1: valor2_c1 = populacao1; valor2_c2 = populacao2; strcpy(nomeAttr2, "População"); break;
+        case 2: valor2_c1 = area1; valor2_c2 = area2; strcpy(nomeAttr2, "Área"); break;
+        case 3: valor2_c1 = densidade1; valor2_c2 = densidade2; strcpy(nomeAttr2, "Densidade Demográfica"); break;
+        case 4: valor2_c1 = pib1; valor2_c2 = pib2; strcpy(nomeAttr2, "PIB"); break;
+        default: printf("Erro ao selecionar atributo 2.\n"); return 1;
+    }
+
+    // Comparação
+    int pontos1 = 0, pontos2 = 0;
+
+    // Comparando atributo 1
+    if (atributo1 == 3) { // densidade: menor vence
+        valor1_c1 < valor1_c2 ? pontos1++ : (valor1_c1 > valor1_c2 ? pontos2++ : 0);
+    } else {
+        valor1_c1 > valor1_c2 ? pontos1++ : (valor1_c1 < valor1_c2 ? pontos2++ : 0);
+    }
+
+    // Comparando atributo 2
+    if (atributo2 == 3) {
+        valor2_c1 < valor2_c2 ? pontos1++ : (valor2_c1 > valor2_c2 ? pontos2++ : 0);
+    } else {
+        valor2_c1 > valor2_c2 ? pontos1++ : (valor2_c1 < valor2_c2 ? pontos2++ : 0);
+    }
+
+    // Soma
+    int soma1 = valor1_c1 + valor2_c1;
+    int soma2 = valor1_c2 + valor2_c2;
+
+    // Exibindo resultado
+    printf("\n=== RESULTADO ===\n");
+    printf("Carta 1: %s\n", nome1);
+    printf("Carta 2: %s\n\n", nome2);
+
+    printf("Atributo 1: %s\n", nomeAttr1);
+    printf("  %s: %d\n", nome1, valor1_c1);
+    printf("  %s: %d\n\n", nome2, valor1_c2);
+
+    printf("Atributo 2: %s\n", nomeAttr2);
+    printf("  %s: %d\n", nome1, valor2_c1);
+    printf("  %s: %d\n\n", nome2, valor2_c2);
+
+    printf("Soma dos Atributos:\n");
+    printf("  %s: %d\n", nome1, soma1);
+    printf("  %s: %d\n", nome2, soma2);
+
+    if (soma1 > soma2) {
+        printf("\n🏆 Vencedor: %s\n", nome1);
+    } else if (soma1 < soma2) {
+        printf("\n🏆 Vencedor: %s\n", nome2);
+    } else {
+        printf("\n⚔️  Empate!\n");
+    }
+
+    return 0;
+}
